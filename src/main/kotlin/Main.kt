@@ -9,7 +9,7 @@ import org.example.utils.ClassAnalyzer
 import org.example.utils.WordAnalyzer
 import service.GitHubService
 
-val token = ""  // Put your classic github token
+val token = ""  // Put your classic github token to avoid rate limiting
 
 suspend fun main() {
     val client = HttpClient(CIO) {
@@ -28,7 +28,7 @@ suspend fun main() {
 
     val response = githubService.searchForJavaRepositories()
     if (response.items.isNotEmpty()) {
-        response.items.take(3).forEach { repo ->
+        response.items.take(12).forEach { repo ->
             val repoLanguagePercentages = githubService.fetchLanguagePercentages(repo.full_name)
 
             val mostUsedLanguage = repoLanguagePercentages.maxByOrNull { it.value }
