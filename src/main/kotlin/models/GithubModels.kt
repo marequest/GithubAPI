@@ -2,13 +2,19 @@ package org.example.models
 
 import kotlinx.serialization.Serializable
 
+/**
+ * All Repositories information.
+ */
 @Serializable
-data class GitHubRepo(
+data class GithubRepositories(
     val total_count: Int,
     val incomplete_results: Boolean,
     val items: List<Repository>
 )
 
+/**
+ * Single repository information.
+ */
 @Serializable
 data class Repository(
     val id: Long,
@@ -18,16 +24,22 @@ data class Repository(
     val language: String?
 )
 
+/**
+ * All files from repository.
+ */
 @Serializable
-data class TreeResponse(
+data class RepositoryFiles(
     val sha: String,
     val url: String,
-    val tree: List<TreeItem>,
+    val tree: List<RepoFile>,
     val truncated: Boolean
 )
 
+/**
+ * File from repository.
+ */
 @Serializable
-data class TreeItem(
+data class RepoFile(
     val path: String,
     val mode: String,
     val type: String,

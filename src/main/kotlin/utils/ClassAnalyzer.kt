@@ -1,6 +1,14 @@
 package org.example.utils
 
+/**
+ * Helper functions for analyzing class names.
+ * @author Marko Jovicic
+ */
 object ClassAnalyzer {
+
+    /**
+     * @return Map of words and times they were used.
+     */
     fun getClassNamesFromPath(classNames: List<String>): Map<String, Int> {
         val wordFrequency = mutableMapOf<String, Int>()
 

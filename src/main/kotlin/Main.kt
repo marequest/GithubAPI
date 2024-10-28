@@ -9,7 +9,10 @@ import org.example.utils.ClassAnalyzer
 import org.example.utils.WordAnalyzer
 import service.GitHubService
 
-val token = ""  // Put your classic github token to avoid rate limiting
+/**
+ * You can put your classic github token here to avoid rate limiting.
+ */
+val token = ""
 
 suspend fun main() {
     val client = HttpClient(CIO) {
@@ -26,9 +29,14 @@ suspend fun main() {
 
     val allWordsFrequency = mutableMapOf<String, Int>()
 
+    /**
+     * You can tweak this value to receive more precise answer.
+     */
+    val topN = 12
+
     val response = githubService.searchForJavaRepositories()
     if (response.items.isNotEmpty()) {
-        response.items.take(12).forEach { repo ->
+        response.items.take(topN).forEach { repo ->
             val repoLanguagePercentages = githubService.fetchLanguagePercentages(repo.full_name)
 
             val mostUsedLanguage = repoLanguagePercentages.maxByOrNull { it.value }
